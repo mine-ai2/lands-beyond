@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lands Beyond
+
+**Social-first interactive stories — "I was there."**
+
+Step into history. Talk to the people who lived it. You can't change what happens — but you can be there.
+
+## Overview
+
+Lands Beyond lets you "leap" into historical or fictional moments, have real conversations with characters, then get woven back into the story's inevitable arc.
+
+**Core principle:** The story goes where it's going. You're a witness, not a driver. The conversation is real; the outcome is fixed; the intimacy is yours to keep.
+
+## Stories
+
+- **The Night Before** — Philadelphia, 1776. Share a drink with James Wilson the night before he changes history.
+- **The Informant** — Los Angeles, 1947. A nervous man has something to tell you.
+
+## Tech Stack
+
+- **Frontend:** Next.js 14 (App Router)
+- **Styling:** Tailwind CSS
+- **LLM:** Anthropic Claude API
+- **TTS:** OpenAI TTS API
+- **Deployment:** Digital Ocean App Platform
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- Anthropic API key
+- OpenAI API key
+
+### Installation
 
 ```bash
+# Clone the repo
+git clone https://github.com/truths/lands-beyond.git
+cd lands-beyond
+
+# Install dependencies
+npm install
+
+# Set up environment
+cp .env.example .env.local
+# Edit .env.local with your API keys
+
+# Run locally
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Digital Ocean App Platform
 
-## Learn More
+1. Push to GitHub
+2. Go to [Digital Ocean Apps](https://cloud.digitalocean.com/apps)
+3. Create App → Connect GitHub repo
+4. Add environment variables:
+   - `ANTHROPIC_API_KEY`
+   - `OPENAI_API_KEY`
+5. Deploy
 
-To learn more about Next.js, take a look at the following resources:
+Or use the included `app.yaml`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+doctl apps create --spec app.yaml
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+lands-beyond/
+├── app/
+│   ├── page.tsx              # Story selection
+│   ├── story/[slug]/         # Story experience
+│   └── api/                  # Backend routes
+├── components/               # React components
+├── content/stories/          # Story content
+├── lib/                      # Utilities
+└── app.yaml                  # DO deployment spec
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
